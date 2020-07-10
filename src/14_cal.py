@@ -31,19 +31,38 @@ import sys
 import calendar
 from datetime import datetime
 
-today = datetime.today()
-year = datetime.now().year
-month = datetime.now().month
-# If the user provides no input, return current month's
-if len(sys.argv) > 3:
-    print("Please provide inputs of the format <M> <YYYY>")
+userYear = input("Please enter the current year")
+userMonth = input("Please enter the current month")
 
-if len(sys.argv) == 1:
-    print(calendar.month(year, month))
-print(f'Script name is {sys.argv[0]}')
 
-if len(sys.argv) == 2:
-    print(calendar.month(year, int(sys.argv[1])))
+def calPrinter(y, m):
+    if m and y:
+        print(calendar.month(int(y), int(m)))
+    elif y:
+        print(calendar.month(int(y), int(datetime.now().month)))
+    else:
+        print("Month:", calendar.month(int(datetime.now().year), int(datetime.now().month)))
 
-if len(sys.argv) == 3:
-    print(calendar.month(int(sys.argv[2]), int(sys.argv[1])))
+
+calPrinter(userYear, userMonth)
+
+
+
+"""userInput = sys.argv
+
+month = int(datetime.now().month)
+year = int(datetime.now().year)
+
+
+def print_calendar(userInput):
+
+    if (len(userInput) == 2):
+        return calendar.prmonth(int(year), int(userInput[1]))
+    elif len(userInput) > 2:
+
+        return calendar.prmonth(int(userInput[2]), int(userInput[1]))
+    else:
+        return calendar.prmonth(year, month)
+
+
+print_calendar(userInput)"""
